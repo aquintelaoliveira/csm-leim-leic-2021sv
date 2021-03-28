@@ -27,7 +27,7 @@ function global:deactivate ([switch]$NonDestructive) {
 
 deactivate -nondestructive
 
-$env:VIRTUAL_ENV="C:\Users\Quintela\Documents\ISEL\CSM\csm_env"
+$env:VIRTUAL_ENV="C:\Users\Quintela\Documents\ISEL\CSM\csm-leim-leic-2021sv\csm_env"
 
 if (! $env:VIRTUAL_ENV_DISABLE_PROMPT) {
     # Set the prompt to include the env name

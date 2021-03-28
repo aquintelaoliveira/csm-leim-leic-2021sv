@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Quintela\Documents\ISEL\CSM\csm_env"
+VIRTUAL_ENV="C:\Users\Quintela\Documents\ISEL\CSM\csm-leim-leic-2021sv\csm_env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
