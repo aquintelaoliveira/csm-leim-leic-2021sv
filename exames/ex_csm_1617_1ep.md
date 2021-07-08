@@ -2,14 +2,19 @@
 
 a) (1,5 val) Admita que pretende transmitir um vídeo num canal de com 6Mbit/s. A resolução para a componente luminância (8 bit por amostra) é de 1920x1080 pixeis e é usado subsampling de cor 4:1:1. Considerando que o factor de compressão é de 40 e 20 para a luminância e crominância respectivamente, calcule o frame rate máximo que consegue transmitir.
 
-`aaa`
+
+![diagrama](./imagens/chroma-subsample.jpg)
+
+* `1920 x 1080 x 8 / 4 / 20 = 207360 ~= 0,2 Mb`
+
+* `frame rate = 6 Mb / 0,2 Mb = 30 frames/s`
 
 b) (1,0 val) Se quiser aumentar o frame rate da alínea anterior, mantendo o mesmo canal, quais os processos que mudaria?
 
-`aaa`
+* `converter as imagens para jpeg para ficarem menos pesadas (?)`
+* `utilizar sequências de frames utilizando I-frames e P-frames para reduzir o bit rate (?)`
 
 c) (1,5 val) Qual o mecanismo usado nos codificadores de vídeo para estes gerarem um débito binário aproximadamente constante.
-
 
 `aaa`
 
@@ -65,25 +70,25 @@ b) (2,5 val) Codifique esta mensagem usando o código LZW. Assuma que o dicioná
 |        |        |        |       B|       2|
 |        |        |        |       F|       3|
 |        |        |        |       N|       4|
-|       B|       A|       1|      BA|       5|
-|       A|       N|       2|      AN|       6|
-|       N|       A|       3|      NA|       7|
+|       B|       A|       2|      BA|       5|
+|       A|       N|       1|      AN|       6|
+|       N|       A|       4|      NA|       7|
 |       A|       N|        |        |        |
-|      AN|       A|       5|     ANA|       8|
-|       A|       B|       6|      AB|       9|
+|      AN|       A|       6|     ANA|       8|
+|       A|       B|       1|      AB|       9|
 |       B|       A|        |        |        |
-|      BA|       N|       8|     BAN|      10|
+|      BA|       N|       5|     BAN|      10|
 |       N|       A|        |        |        |
-|      NA|       B|      10|     NAB|      11|
+|      NA|       B|       7|     NAB|      11|
 |       B|       A|        |        |        |
 |      BA|       N|        |        |        |
-|     BAN|       A|      13|    BANA|      12|
-|       A|       F|      14|      AF|      13|
-|       F|       A|      15|      FA|      14|
+|     BAN|       A|      10|    BANA|      12|
+|       A|       F|       1|      AF|      13|
+|       F|       A|       3|      FA|      14|
 |       A|        |       1|        |        |
 <br>
 
-* **Código enviado:** 2 1 3 6 9 8 5 11 3 1 
+* **Código enviado:** 2 1 4 6 1 5 7 10 1 3 1
 
 
 c) (1,0 val) Calcule a eficiência do código LZW e a taxa de compressão.
@@ -92,9 +97,9 @@ c) (1,0 val) Calcule a eficiência do código LZW e a taxa de compressão.
 Tc = Do / Dc
 
 Do = 16 simbolos *  8 = 128 bits
-Dc = 10 codigos  * 12 = 120 bits
-Tc = 128 / 120 = 1.03 
-               ~> 2,91 %
+Dc = 11 códigos  * 12 = 122 bits
+Tc = 128 / 122 = 1.05 
+               ~> 4,69 %
 ```
 
 ```python
@@ -122,7 +127,8 @@ Algorítmo Shannon-Fano
 a) (1,5 val) Quantos blocos de luminância e de crominância existem na imagem? Qual o
 tamanho em bits da imagem, sabendo que o factor de compressão para a luminância é de 30 e da crominância de 40.
 
-`aaa`
+* `lum = 1280 x 720 / (8 x 8) = 14,400 blocos`
+* `crom = 1280 x 720 / 2 / (8 x 8) = 7,200 blocos`
 
 b) (3,0 val) Admita que a figura representa a DCT do primeiro bloco de luminância. Codifique este bloco. (Use para o efeito a as matrizes e tabelas da norma)
 
@@ -152,6 +158,22 @@ b) (3,0 val) Admita que a figura representa a DCT do primeiro bloco de luminânc
 
 # 4. Considere a transformada DCT 2D na codificação de imagens.
 a) (1,5 val) Calcule a DCT de um bloco de 8x8 com valores constantes para todos os pixeis. Assuma que o valor de todos os pixeis é igual a μ e expresse o resultado em termos desta constante.
+
+```
+y(0,0) = 2/8 * sqrt(2)/2 * sqrt(2)/2 * sum sum cos(0) * cos(0) * (μ*64)
+y(0,0) = (μ*64) / 8 
+```
+
+|   |   |   |   |   |   |   |   |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|y(0,0)|  0|  0|  0|  0|  0|  0|  0|
+|  0|  0|  0|  0|  0|  0|  0|  0|
+|  0|  0|  0|  0|  0|  0|  0|  0|
+|  0|  0|  0|  0|  0|  0|  0|  0|
+|  0|  0|  0|  0|  0|  0|  0|  0|
+|  0|  0|  0|  0|  0|  0|  0|  0|
+|  0|  0|  0|  0|  0|  0|  0|  0|
+|  0|  0|  0|  0|  0|  0|  0|  0|
 
 b) (2,0 val) Calcule a DCT inversa do seguinte bloco de 2x2:
 
